@@ -11,7 +11,7 @@ features = joblib.load('feature_names.pkl')
 st.set_page_config(page_title="Customer Churn Predictor", layout="centered")
 st.title("📊 Customer Retention Tool")
 
-# 2. Input Fields
+# 2. Input Fields in the Sidebar
 st.sidebar.header("Customer Details")
 contract = st.sidebar.selectbox("Contract Type", ("Month-to-month", "One year", "Two year"))
 monthly_charges = st.sidebar.slider("Monthly Charges ($)", 18.0, 120.0, 70.0)
@@ -19,19 +19,22 @@ total_charges = st.sidebar.number_input("Total Charges ($)", min_value=0.0, valu
 tenure = st.sidebar.slider("Tenure (Months)", 0, 72, 12)
 tech_support = st.sidebar.selectbox("Has Tech Support?", ("Yes", "No", "No internet service"))
 
-# 3. FEATURE ALIGNMENT (The most important part)
-# Create a dataframe with all zeros matching the training columns
+# 3. FEATURE ALIGNMENT
+# Create a dataframe with all zeros matching the EXACT training columns
 input_df = pd.DataFrame(np.zeros((1, len(features))), columns=features)
 
-# Map user inputs to the correct columns
+# Fill in the numerical values
 input_df['MonthlyCharges'] = monthly_charges
 input_df['TotalCharges'] = total_charges
 input_df['tenure'] = tenure
 
-# Handle categorical 'One-Hot' columns (match exactly with your training dummy names)
-if contract == "One year": input_df['Contract_One year'] = 1
-if contract == "Two year": input_df['Contract_Two year'] = 1
-if tech_support == "Yes": input_df['TechSupport_Yes'] = 1
+# Handle categorical 'One-Hot' columns (Matches the names from your pd.get_dummies)
+if contract == "One year": 
+    if 'Contract_One year' in features: input_df['Contract_One year'] = 1
+if contract == "Two year": 
+    if 'Contract_Two year' in features: input_df['Contract_Two year'] = 1
+if tech_support == "Yes": 
+    if 'TechSupport_Yes' in features: input_df['TechSupport_Yes'] = 1
 
 # 4. Prediction Logic
 if st.button('Predict Churn'):
