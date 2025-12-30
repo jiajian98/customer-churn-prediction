@@ -24,6 +24,11 @@ The objective of this project is to build a predictive system that identifies cu
 3.  **Class Imbalance Management:** Used SMOTE to ensure the model accurately identifies the minority churn class.
 4.  **Interactive Dashboard:** A live web interface where users can adjust customer parameters and see real-time churn probabilities.
 
+## 🚀 Key Technical Features
+* **Imbalance Handling:** Utilized SMOTE (Synthetic Minority Over-sampling Technique) to ensure the model learns effectively from the minority 'Churn' class.
+* **Machine Learning Pipeline:** Built and tuned a Random Forest Classifier, optimizing for Recall to ensure as many potential churners as possible are caught.
+* **Interactive Deployment:** Developed a user-facing web app using Streamlit that allows real-time predictions based on user-inputted customer data.
+
 ## 📈 Model Performance
 * **ROC-AUC Score:** 0.82
 * **Key Insight:** Month-to-month contracts and high monthly charges were the strongest predictors of churn.
@@ -33,15 +38,6 @@ The objective of this project is to build a predictive system that identifies cu
 * `app.py`: The production-ready Streamlit application.
 * `churn_model.pkl`: The serialized Random Forest model.
 * `requirements.txt`: Necessary libraries for deployment.
-
-## 🚀 Key Technical Features
-* **Data Preprocessing:** Handled inconsistent data types, treated missing values, and performed categorical encoding for model readiness.
-
-* **Imbalance Handling:** Utilized SMOTE (Synthetic Minority Over-sampling Technique) to ensure the model learns effectively from the minority 'Churn' class.
-
-* **Machine Learning Pipeline:** Built and tuned a Random Forest Classifier, optimizing for Recall to ensure as many potential churners as possible are caught.
-
-* **Interactive Deployment:** Developed a user-facing web app using Streamlit that allows real-time predictions based on user-inputted customer data.
 
 ## 🔧 How to Run Locally
 1. Clone the repo: `git clone [https://github.com/jiajian98/customer-churn-prediction]]`
